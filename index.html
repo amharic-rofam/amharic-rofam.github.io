@@ -169,15 +169,33 @@
             align-items:right;
             box-shadow:0px 0px 8px cyan
 }
+ @keyframes type{
+     0%{
+         transform:translate(-50vw)
+     }
+     50%{
+     transform:scale(0.7)
+     }
+     100%{
+    transform : scale(1)
+     }       
+     }
+   @keyframes typing{
+      from{width:0;}
+      to { width:100%;}       
+    }
+@keyframes blink{
+      from,to{border-color:transparent}
+    50%{border-color:}
+}
  </style>
 </head>
 <body>
 
     <div class="container" id="menu-screen">
         <div class="header" style="text-align:center;">
-            <h25 id="html-title" style="color:gold;font-size:1.6rem">ሮፋም የአማርኛ ሰዋሰው ጥያቄዎች</h25>
-            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.66.54-1.27.43-2.76-.36-3.92-1.16-1.16-2.65-1.27-3.92-.36-1.12-1.3-2.48-2.18-3.66-2.18-1.58 0-2.95.88-3.66 2.18-1.27-.54-2.76-.43-3.92.36-1.16 1.16-1.27 2.65-.36 3.92 1.3 1.12-2.18 2.48-2.18 3.66 0 1.58.88 2.95 2.18 3.66-.54 1.27-.43 2.76.36 3.92 1.16 1.16 2.65 1.27 3.92.36 1.12 1.3 2.48 2.18 3.66 2.18 1.58 0 2.95-.88 3.66-2.18 1.27.54 2.76.43 3.92-.36 1.16-1.16 1.27-2.65.36-3.92 1.3-1.12 2.18-2.48 2.18-3.66zm-12.28 4.31l-3.39-3.39 1.41-1.41 1.98 1.98 4.95-4.95 1.41 1.41-6.36 6.36z"></path></svg>
-               <h26 id="selection-text" style="color:white;font-size:1.2rem">ቋንቋ:</h26>
+            <h5 id="html-title" style="color:transparent;background:linear-gradient(160deg,yellow,gold,purple,cyan);-webkit-background-clip:text;font-size:1.6rem;animation:type 6s ease-in-out">ሮፋም የአማርኛ ሰዋሰው ጥያቄዎች</h5> 
+                <h26 id="selection-text" style="color:gold;font-size:1.2rem">ቋንቋ:</h26>
             <select id="lang-selector" onchange="changeLang(this.value)" style="background-color:crimson;color:cyan;border-radius:20px">
                 <option value="am">አማርኛ</option>
                 <option value="en">English</option>
@@ -185,12 +203,12 @@
             <button onclick="showabout();" style="color:rgb(0,255,0);background:linear-gradient(90deg,blue,cyan);border-radius:5px;"><b>About Dev.</b></button>
             <div class="progress-wrapper">
                 <div class="bar-bg"><div id="progress-fill"></div></div>
-                <p id="stats-text" style="font-size: 0.9rem; margin-top: 8px;color:gold">0/9 ተጠናቋል</p>
+                <p id="stats-text" style="font-size: 0.9rem; margin-top: 8px;color:transparent;background:linear-gradient(90deg,yellow,purple,cyan,blue);-webkit-background-clip:text;font-weight:bold;animation:typing 10s steps(40,end) forwards,blink 0.75s infinite;overflow:hidden;white-space:nowrap">0/9 ተጠናቋል</p>
             </div>
         </div>
         <div class="grid" id="topic-grid"></div>
         </br>
-        <div class="container" id="about-screen" style="display:none">
+        <div class="container-about" id="about-screen" style="display:none">
       <div class="animation">
             <div class="inner-content">
                 <div id="close-about">
@@ -228,12 +246,12 @@
     </div>
         </div>
         <button onclick="resetStats()" id="reset-btn" style="width: 100%; margin-top: 15px; background: #ef4444; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer;">
-  ውጤት አፅዳ (Reset Progress)
+  ውጤት አፅዳ 
 </button>
     </div>
 <div class="container hidden" id="quiz-screen">
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-          <h3 id="quiz-title" style="color:gold; margin:0;">Topic</h3>
+          <h3 id="quiz-title" style="color:transparent;background:conic-gradient(from 0deg,#ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);margin:0;-webkit-background-clip:text">Topic</h3>
  <button onclick="exitQuiz()" id="exit-button" style="color:gold;background-color: #334155;border-radius:5px">አቋርጥ</button>
         </div>
         <p id="question-text" style="font-size:1.2rem; min-height:50px;"></p>
@@ -257,15 +275,15 @@
             "ግስ": { q: [{t: "ግስ በአረፍተ ነገር ውስጥ ምን ሊሆን ይችላል?", o: ["የአርፍተ ነገር መቋጫ", "ድርጊት","ድርጊት የፈፀመው አካል","አንደኛው እና ሁለተኛው መልስ ናቸው"], a: 3,e:"ግስ በአርፍተ ነገር ውስጥ መጨረሻ ላይ አርፍተነገሩን በድርጊት ይደመድማል ወይም በባለቤት የተፈፀመ፤በተሳቢ ላይ የሚፈፀም ድርጊትን የሚያመለክት የቃል ክፍል ነው።"}, {t: "የግስ አይነቶች ከሚባሉት ውስጥ ያልሆነው የቱ ነው?", o: ["የድርጊት ግስ", "ወደረኛ መስተፃምር","የመኖር ግስ","የመሆን ግስ"], a: 1,e:"ወደረኛ መስተፃምር ሁለት ነገሮችን የሚያወዳድር የመስተፃምር አይነት ነው።"}, {t: "ከሚከተሉት ውስጥ የድርጊት ግስ የሆነው የቱ ነው?", o: ["ሰበረ", "አለ","ነው","በተጨማሪ"], a: 0,e:"''ሰበረ'' አንድን ነገር የመስበር ድርጊትን የሚያሳይ የድርጊት ግስ ነው።"},{t:"የድርጊት ግስ አይነት የሆኑት የትኞቹ ናቸው?", o:["ሳቢ (ተሻጋሪ ግስ)","ጠቋሚ መስተፃምር","ኢ-ሳቢ (የማይሻገር ግስ)","ከሁለተኛው በስተቀር ሁሉም መልስ ናቸው"],a:3,e:"ሳቢ ግስ ባለቤትን እና ተሳቢን የሚያካትት የድርጊት ግስ አይነት ሲሆን ኢ-ሳቢ ግስ ደግሞ ድርጊቱ በባለቤቱ ላይ ያለቀ ብቻ መሆኑን የሚያመለክት የድርጊት ግስ አይነት ነው።"},{t:"ከሚከተሉት ውስጥ ሳቢ ግስ የሆነው የቱ ነው?",o:["ተኛ","ሽጠ","ሄደ","መጣ"],a:1,e:"''ሸጠ'' የሚለው ግስ የመሸጥ ድርጊት የፈፀመ አካልና የተፈፀመበት አካል እንዳለ ያመለክታል። ስለዚህ ሳቢ ግስ ነው።"}]},
             "ቅፅል": { q: [{t: "ቅፅል ማለት ምን ማለት ነው?", o: ["ለስም የተሰጠ ሌላኛው መጠሪያ ማለት ነው።", "የስም ገላጭ ማለት ነው።","ከግስ በፊት እየገባ ግስን የሚገልፅ ነው።","ድርጊት ተቀባይ ነው።"], a: 1,e:"ቅፅል ማለት ስምን የሚገልፅ የቃል ክፍል ነው፡፡ "}, {t: "ባህሪ አመልካች ቅፅል የሆነው የቱ ነው?", o: ["ቀያይ", "ንቁ","ጎበዝ","ሁለተኛውና ሦስተኛው መልሥ መሆን ይችላሉ"], a: 3,e:"ንቁ ንቃትን፤ጎበዝ ጉብዝናን የሚገልፁ የባህሪ ቅፅሎች ናቸው፡፡"}, {t: "ቅፅል ከስም በስተየት ሊገኝ ይችላል?", o: ["በስተግራ እና በስተቀኝ", "በመሀል","በግርጌ","ከግስ በፊት"], a: 0,e:"ቅፅል ከስም በፊት እና በኋላ በመግባት ስምን የበለጠ የሚገልፅ የቃል ክፍል ነው።"}, {t: "የመጠን ቅፅል የሆነው የቱ ነው?", o: ["ቀጭን", "ወፍራም","ደንዳና","ሁሉም"], a: 3,e:"ሁሉም የአንድን ነገር መጠን የሚገልፁ መጠን አመልካች ቅፅሎች ናቸው።"}, {t: "ቅፅል የሆነው የትኛው ነው?", o: ["በፍጥነት", "እስያ","ጠይም","ወደ"], a: 2,e:"ጠይም አይነት አመልካች ቅፅል ነው።"}]},
             "ተውሳከ ግስ": { q: [{t: "''ተውሳክ'' ማለት ምን ማለት ነው?", o: ["የግዕዝ ቃል ሲሆን ''ጭማሪ'' ማለት ነው።", "ግስን እና ግስን የሚያገናኝ ማለት ነው።","የግስ ገላጭ ማለት ነው።","ስምን የሚተካ ነው።"], a: 0,e:"''ተውሳክ'' የግዕዝ ቃል ሲሆን በአማርኛም ''ጭማሪ'' ማለት ነው።"}, {t: "ተውሳከ ግስ ከግስ በፊት እየገባ_____በመሆን ያገለግላል", o: ["የስም ገላጭ", "መጠን አመልካች ቅፅል","የግስ ገላጭ","መልስ አልተሰጠም"], a: 2,e:"''ተውሳክ'' በግዕዝ ''ጭማሪ'' ማለት ከሆነ ተውሳከ ግስ ደግሞ የግስ ጭማሪ ማለት ስለሆነ ተውሳከ ግስ ከግስ በፊት በመግባት ስለግሱ ተጨማሪ መረጃ ይሰጣል።"}, {t: "የሁኔታ ተውሳከ ግስ የሆነው የትኛው ነው?", o: ["በፍጥነት", "ክፉኛ","በሀይል","ሁሉም"], a: 3,e:"ለምሳሌ:-''በፍጥነት'' የሚለውን ቃል ''አበበ ከት/ቤት በፍጥነት መጣ።'' በሚለው አ/ነገር ውስጥ አስገብተን ብናየው አበበ የመጣበትን ሁኔታ ይገልጻል፤ ስለዚህ የሁኔታ ተውሳከ ግሶች አንድ ድርጊት የተፈጸመበትን አኳኋን ይገልጻሉ። በዚህ አ/ነገር ውስጥም ሶስቱም አማራጮች አንድ ነገር የተፈፀመበትን ሁኔታ በማሳየት ግሱን ይገልፃሉ።"}, {t: "ውልድ ተውሳከ ግስ እና ነባር ተውሳከ ግስ በምን ይለያሉ?", o: ["የሁኔታ ተውሳከ እና የጊዜ ተውሳከ ግሶችን በማካተታቸው", "ውልድ ተውሳከ ግሶች ''-ኛ'' የሚለውን ቅጥያ ስለሚወስዱ","ሁለቱም የተለያዩ የተውሳከ ግስ አይነቶች በመሆናቸው ","መልስ አልተሰጠም"], a: 1,e:"በአማርኛ ውስጥ ያሉ ተውሳከ ግሶች ጥቂት ቢሆኑም ውልድ እና ነባር ተብለው ይከፈላሉ። ውልድ ተውሳከ ግሶች ''-ኛ'' የሚለውን ቅጥያ ይወስዳሉ። ለምሳሌ፦ክፉኛ፣ጅልኛ፣ምንኛ፣ግምኛ ወ.ዘተ"}, {t: "የጊዜ አመልካች ተውሳከ ግስ የሆነው የቱ ነው?", o: ["ትናንትና", "በጠዋት","ሲመሽ","ሁሉም"], a: 3,e:"ሁሉም አማራጮች አንድ ድርጊት የተፈፀመበትን ጊዜ የሚያመለክቱ የጊዜ ተውሳከ ግሶች ናቸው። ለምሳሌ፦''አበበ ትናንትና መጥቶ ሄደ።'' ብንል ''ትናንትና'' የሚለው ቃል አበበ የመጣበትን ጊዜ (የመምጣትና የመሄድ ድርጊት የተፈጸመበትን ጊዜ) ይገልፃል።"}]},
-            "አያያዦች": { q: [{t: "አያያዥ ምን እና ምንን ያያይዛሉ?", o: ["ቃልና ቃልን", "ሀረግ እና ሀረግን","አርፍተነገር እና አረፍተነገርን","ሁሉም"], a: 3,e:""}, {t: "አያያዦች ከሚያያይዙት ሀሳብ አንፃር በሁለት ይከፈላል። ምን አይነት ሀሳብ ያላቸውን ሊያይዝ ይችላል? ", o: ["ተመሳሳይ ሀሳብ ያላቸውን ሁለት ሀሳቦች ", "ተቃራኒ ሀሳብ ያላቸውን ሁለት ሀሳቦች","የአንደኛውና የሁለተኛው መልስ ናቸው።","ፊደልና ፊደልን"], a: 2,e:""}, {t: "ተመሳሳይ ሀሳብን የሚያይዙት አያያዦች ከሚከተሉት ውስጥ የትኞቹ ናቸው?", o: ["ስለሆነም", "ነገር ግን","ሆኖም ግን","በተጨማሪም","የአንደኛውና የአራተኛው መልስ መሆን ይችላሉ"], a: 4,e:""}, {t: "ተቃራኒ ሀሳብን የሚያይዙት አያያዦች ከሚከተሉት ውስጥ የትኛው ነው?", o: ["በተጨማሪም", "ዳሩ ግን","በመሆኑም","ከዚህም በላይ"], a: 1,e:""}, {t: "''ጤና አዳም ለቅመማ ቅመምነት ያገለግላል፤_____ከሻይ ጋርም ሊቀርብ ይችላል።''ይህንን አርፍተ ነገር ለማሟላት ሊስማማው የሚችለው ከሚከተሉት ውስጥ የትኛው አያያዥ ቃል ነው?", o: ["በተጨማሪም", "ይሁን እንጂ","እና","በመሆኑም"], a: 0,e:""}]},
+            "አያያዦች": { q: [{t: "አያያዥ ምን እና ምንን ያያይዛሉ?", o: ["ቃልና ቃልን", "ሀረግ እና ሀረግን","አርፍተነገር እና አረፍተነገርን","ሁሉም"], a: 3,e:"አያያዥ ቃላት ቃልን ከቃል፤ ሀረግን ከሀረግ ፤ አርፍተ-ነገርን ከአርፍተ-ነገር ለማያያዝ የሚጠቅሙ የአንድን ፅሁፍ አፃፃፍ ስርዓት የሚያስተካክሉ ቃላት ናቸው።"}, {t: "አያያዦች ከሚያያይዙት ሀሳብ አንፃር በሁለት ይከፈላል። ምን አይነት ሀሳብ ያላቸውን ሊያይዝ ይችላል? ", o: ["ተመሳሳይ ሀሳብ ያላቸውን ሁለት ሀሳቦች ", "ተቃራኒ ሀሳብ ያላቸውን ሁለት ሀሳቦች","የአንደኛውና የሁለተኛው መልስ ናቸው።","ፊደልና ፊደልን"], a: 2,e:""}, {t: "ተመሳሳይ ሀሳብን የሚያይዙት አያያዦች ከሚከተሉት ውስጥ የትኞቹ ናቸው?", o: ["ስለሆነም", "ነገር ግን","ሆኖም ግን","በተጨማሪም","የአንደኛውና የአራተኛው መልስ መሆን ይችላሉ"], a: 4,e:""}, {t: "ተቃራኒ ሀሳብን የሚያይዙት አያያዦች ከሚከተሉት ውስጥ የትኛው ነው?", o: ["በተጨማሪም", "ዳሩ ግን","በመሆኑም","ከዚህም በላይ"], a: 1,e:""}, {t: "''ጤና አዳም ለቅመማ ቅመምነት ያገለግላል፤_____ከሻይ ጋርም ሊቀርብ ይችላል።''ይህንን አርፍተ ነገር ለማሟላት ሊስማማው የሚችለው ከሚከተሉት ውስጥ የትኛው አያያዥ ቃል ነው?", o: ["በተጨማሪም", "ይሁን እንጂ","እና","በመሆኑም"], a: 0,e:""}]},
             "ስርዓተ-ነጥብ": { q: [{t: "የስርዓተ ነጥቦች ጠቀሜታ ምንድን ነው?", o: ["የፅሁፍን ሀሳብ ላለማዛባት", "አነጋገርን በፅሁፍ ለመግለፅ ስንፈልግ ለመግለፅ","ፅሁፍን ትርጉም የለሽነታቸውን ለማስተካከል ","ሁሉም"], a: 3,e:""}, {t: "ቁጣንና ትዕዛዝን የሚያመለክተው ከሚከተሉት ውስጥ የትኛው ስርዓተ ነጥብ ነው?", o: ["እመጫት (^)", "ቃለ አጋኖ፣አቆልቋይ (!)","ይዘት (.)","የመሀል ሰረዝ ነጠላ ሰረዝ (፥)"], a: 1,e:""}, {t: "ፅሁፍን አራርቆ መፃፍ ባልተጀመረበት ጊዜ ቃላትን ከቃላት ለመለየት የምንጠቀምበት ስርዓተ ነጥብ የቱ ነው?", o: ["ሁለት ነጥብ (:)", "ድርብ ሰረዥ (፤)","ትዕምርተ ጥቅስ (« »)","ትዕምርተ ስላቅ (¡)"], a: 0,e:""}, {t: "ምዕራፍን ከንዑስ ቁጥሮች ለመለየት የምንጠቀምባቸው ስርዓተ ነጥቦች የትኞቹ ናቸው?", o: ["ይዘት (.)", "የላይ ሰረዝ ነጠላ ሰረዝ (፣)","የመሀል ሰረዝ ነጠላ ሰረዝ (፥)","የአንደኛውና የሶስተኛው መልስ መሆን ይችላሉ።"], a: 3,e:""}, {t: "ቃላትን አሳጥሮ ለመፃፍ የሚያገለግሉት ስርዓተ ነጥቦች የትኞቹ ናቸው? ", o: ["ሰረዝ (-)", "ይዘት (.)","እዝባር (/)","የሁለተኛውና የሶስተኛው መልስ መሆን ይችላሉ"], a: 3,e:""}]},
             "ቢጋር": { q: [{t: "ቢጋር ማለት ምን ማለት ነው?", o: ["አስተዋፅኦ ማለት ነው።", "አንድን ፅሁፍ ከመፃፋችን በፊት የፅሁፋን ዋናና ዝርዝር ጉዳዮች የምንነድፍበት ነው።","አንድ ፅሁፍ ማራኪ አፃፃፍ እንዲኖረው ከመፃፋችን በፊት የምንሰራው ነው።","ሁሉም መልስ መሆን ይችላሉ።"], a: 3,e:""}, {t: "ከሚከተሉት ውስጥ ቢጋር በየትኞቹ የአነዳደፍ ዘዴዎች ሊቀርብ ይችላል?", o: ["በርዕስ መልክ", "በአጭር መልክ","በአርፍተነገር መልክ","የአንደኛውና የሶስተኛው መልስ ይሆናሉ።"], a: 3,e:""}, {t: "ከሚከተሉት ውስጥ የቢጋር ጥቅም ያልሆነው የቱ ነው?", o: ["የፅሁፍ ሀሳብን ያዛባል።", "ከርዕሰ ጉዳዩ እንዳንወጣ ያግዘናል።","የፅሁፋን ሀሳብ በቅደም ተከተል እንድናስቀምጥ ያደርጋል።","ፍሬ ሀሳቦችን እና ዝርዝር ሀሳቦችን ለማስፈር ያግዛል።"], a: 0,e:""}, {t: "ቢጋር ከሀሳብ አወራረድ አንፃር በስንት ይከፈላል? እነማን ናቸው?", o: ["በሦስት፤ እነሰም፦ የሀላፊ፣ የአሁን እና የትንቢት (የወደፊት) ናቸው። ", "በሁለት ይከፈላሉ። እነሱም ፦ መደበኛ ቢጋር እና ኢ-መደበኛ ቢጋር ናቸው","የተውሳከ ግስ አይነቶች የምንላቸው ናቸው።","መልስ አልተሰጠም"], a: 1,e:""}, {t: "_____ለሀሳብ አወራረዳችን እና ለፅሁፋ ቅደም ተከትል ሳንጨነቅ የምንነድፈው የቢጋር አይነት ነው።", o: ["በርዕስ መልክ የተፃፈ ቢጋር", "መደበኛ ቢጋር","ኢ-መደበኛ ቢጋር","በዓርፍተነገር መልክ የተፃፈ ቢጋር"], a:2,e:""}]},
             "ጊዜ": { q: [{t: "ጊዜ ማለት_____", o: ["የግስ ጭማሪ ማለት ነው።", "ከስም በፊት የሚገባ ቃል ነው።","አንድ ድርጊት የተፈፀመበትን ጊዜ የሚያመለክት ነው።","መልስ አልተሰጠም"], a: 2,e:""}, {t: "የአሁን ጊዜን የሚያመለክተው የትኛው ነው?", o: ["ምሳውን በላ።", "አበበ በሶ እየጠጣ ነው።","ወደ ት/ቤት ሊሄድ ነው።","የቤት ስራውን ሰርቷል።"], a: 1,e:""}, {t: "የትንቢት ጊዜን የሚያመለክተው የትኛው ነው?", o: ["የቀጣይ ሳምንት", "እየበላ ነበር","ወደ ቤት ሂዷል","መልስ አልተሰጠም"], a: 0,e:""}, {t: "የሀላፊ ጊዜ በሶስት ይከፈላል፤ እነሱም የዋህ ሀላፊ፣የሩቅ ሀላፊ እና የቅርብ ሀላፊ ናቸው። ከሚከተሉት ውስጥ የትኛው የሀላፊ ጊዜ አይነት ነው ድርጊቱ የተፈጸመበትን ትክክለኛ ጊዜ የማያመለክተው?", o: ["የሩቅ ሀላፊ", "የቅርብ ሀላፊ","የምክንያት ተውሳከ ግስ","የዋህ ሀላፊ"], a: 3,e:""}, {t: "የሩቅ ሀላፊን የሚያመለክተው አርፍተ ነገር የቱ ነው?", o: ["ምሳዬን እየበላሁ ነው።", "ከትምህርት ቤት ሊወጣ ነበር።","ቀጣይ ሳምንት ወደ ሀዋሳ ይሄዳል።","ከበደ ብር አለው።"], a: 1,e:""}]},
          };
          let currentLang='am';
         const langData = {
-        am: { next: "ቀጣይ ጥያቄ →",about:"ስለ ሰሪው",credit:"የተሰራው: በሀይለማርያም ተስፋዬ",lang:"ቋንቋ:",exit:"አቋርጥ",title:"ሮፋም የአማርኛ ሰዋሰው ጥያቄዎች",explain:"ገለጻ:",version:"ስሪት 1.0",tg:"የቴሌግራም ቦቶች",email:"የኢሜል አካውንት",haile:"የእኔን የእንግሊዝኛ ግራመር ቦት ለመቀላቀል",get:"ሌሎች መተግበሪያዎችን ለማግኘት",dev:"ከሰሪው ጋር በኢሜል ለመገናኘት"},
-        en: { next: "Next Question →",about:"About developer",credit:"developed by: hailemariam tesfaye",lang:"language:",exit:"Quit",title:"Rofam amharic grammar questions",explain:"Explanation:",version:"version 1.0",tg:"Telegram bots",email:"Email Account",haile:"To join my English grammar bot",get:"Get another apps",dev:"To contact with Dev. on Email"},
+        am: { next: "ቀጣይ ጥያቄ →",about:"ስለ ሰሪው",credit:"የተሰራው: በሀይለማርያም ተስፋዬ",lang:"ቋንቋ:",exit:"አቋርጥ",title:"ሮፋም የአማርኛ ሰዋሰው ጥያቄዎች",explain:"ገለጻ:",version:"ስሪት 1.0",tg:"የቴሌግራም ቦቶች",email:"የኢሜል አካውንት",haile:"የእኔን የእንግሊዝኛ ግራመር ቦት ለመቀላቀል",get:"ሌሎች መተግበሪያዎችን ለማግኘት",dev:"ከሰሪው ጋር በኢሜል ለመገናኘት",reset:"ውጤት አፅዳ "},
+        en: { next: "Next Question →",about:"About developer",credit:"developed by: hailemariam tesfaye",lang:"language:",exit:"Quit",title:"Rofam amharic grammar questions",explain:"Explanation:",version:"version 1.0",tg:"Telegram bots",email:"Email Account",haile:"To join my English grammar bot",get:"Get another apps",dev:"To contact with Dev. on Email",reset:"Reset progress"},
            };
 
     function changeLang(l) {
@@ -283,7 +301,8 @@
         document.getElementById("email-text").innerText = d.email;
         document.getElementById("haile-bot").innerText = d.haile;
         document.getElementById("get-button").innerText = d.get;
-        document.getElementById("dev-button").innerText = d.dev
+        document.getElementById("dev-button").innerText = d.dev;
+        document.getElementById("reset-btn").innerText= d.reset
  const typeSelect = document.getElementById('conv-type');
         typeSelect.innerHTML = '';
         d.units.forEach((u, i) => {
@@ -389,9 +408,12 @@
         }
 
         function exitQuiz() {
+            
             document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('menu-screen').classList.remove('hidden');
+            document.getElementById('menu-screen').classList.remove('hidden')
+            
             refreshMenu();
+            
         }
 
         refreshMenu();
